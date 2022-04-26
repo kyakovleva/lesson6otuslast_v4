@@ -1,7 +1,7 @@
 package pages.persContainers;
 
-import Utils.JsOperations;
-import Utils.WaitMethods;
+import utils.JsOperations;
+import utils.WaitMethods;
 import config.ServerConfig;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.commons.collections4.CollectionUtils;
@@ -9,7 +9,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.PersPage;
@@ -21,7 +20,7 @@ public class ContactsData {
     private static final Logger logger = LogManager.getLogger(PersPage.class);
     private final ServerConfig serverConfig = ConfigFactory.create(ServerConfig.class);
     private final WaitMethods wait;
-    private JsOperations JavascriptExecutor;
+    private JsOperations js;
 
     private final By deleteButtonContainer = By.xpath(".//div[contains(@class, 'container__col container__col_12 container__col_md-0')]");
     private final By deleteButton = By.xpath(".//button[contains(@class, 'js-formset-delete')]");
@@ -34,7 +33,7 @@ public class ContactsData {
     public ContactsData(WebDriver driver) {
         this.driver = driver;
         this.wait = new WaitMethods(driver, 5,1);
-        this.JavascriptExecutor = (JsOperations) driver;
+        this.js = new JsOperations(driver);
     }
 
     private void deleteContact(WebElement contact) {
@@ -90,11 +89,11 @@ public class ContactsData {
 
     public void checkContactsData(){
 		WebElement tgElement = driver.findElement(firstContactField);
-		JsOperations.moveToElement(tgElement);
+		js.moveToElement(tgElement);
 		String getTg = tgElement.getDomAttribute("value");
 
 		WebElement vkElement = driver.findElement(secondContactField);
-        JsOperations.moveToElement(vkElement);
+        js.moveToElement(vkElement);
 		String getVk = vkElement.getDomAttribute("value");
 
 

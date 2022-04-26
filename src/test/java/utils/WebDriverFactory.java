@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 import exceptions.DriverNotFoundException;
 import io.github.bonigarcia.wdm.WebDriverManager;

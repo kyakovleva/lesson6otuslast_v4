@@ -1,6 +1,6 @@
 package pages.persContainers;
 
-import Utils.WaitMethods;
+import utils.WaitMethods;
 import config.ServerConfig;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.logging.log4j.LogManager;
