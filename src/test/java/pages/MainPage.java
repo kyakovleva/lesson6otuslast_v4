@@ -25,11 +25,11 @@ public class MainPage {
         this.driver = driver;
     }
 
-    public void open(){
+    public void open() {
         driver.get(System.getProperty("base.url"));
     }
 
-    public void auth(){
+    public void auth() {
         driver.findElement(authButton).click();
 
         driver.findElement(emailField).sendKeys(serverConfig.email());

@@ -32,7 +32,7 @@ public class ContactsData {
 
     public ContactsData(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WaitMethods(driver, 5,1);
+        this.wait = new WaitMethods(driver, 5, 1);
         this.js = new JsOperations(driver);
     }
 
@@ -87,19 +87,19 @@ public class ContactsData {
         setContact(contactCount++, "Тelegram", serverConfig.tg());
     }
 
-    public void checkContactsData(){
-		WebElement tgElement = driver.findElement(firstContactField);
-		js.moveToElement(tgElement);
-		String getTg = tgElement.getDomAttribute("value");
+    public void checkContactsData() {
+        WebElement tgElement = driver.findElement(firstContactField);
+        js.moveToElement(tgElement);
+        String getTg = tgElement.getDomAttribute("value");
 
-		WebElement vkElement = driver.findElement(secondContactField);
+        WebElement vkElement = driver.findElement(secondContactField);
         js.moveToElement(vkElement);
-		String getVk = vkElement.getDomAttribute("value");
+        String getVk = vkElement.getDomAttribute("value");
 
 
-		Assert.assertEquals("Контакт1 не корректен", "https://t.me/test", getTg);
-		Assert.assertEquals("Контакт2 не корректен", "https://vk.com/test", getVk);
-		logger.info("Данные контактов отображаются корректно");
+        Assert.assertEquals("Контакт1 не корректен", "https://t.me/test", getTg);
+        Assert.assertEquals("Контакт2 не корректен", "https://vk.com/test", getVk);
+        logger.info("Данные контактов отображаются корректно");
     }
 
 }

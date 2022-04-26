@@ -6,13 +6,13 @@ import org.openqa.selenium.WebElement;
 
 public class JsOperations {
 
-    private static JavascriptExecutor js;
+    private JavascriptExecutor js;
 
     public JsOperations(WebDriver driver) {
-        js =(JavascriptExecutor)driver;
+        js = (JavascriptExecutor) driver;
     }
 
-    public static void moveToElement(WebElement element) {
+    public void moveToElement(WebElement element) {
         js.executeScript("arguments[0].scrollIntoView(false)", element);
     }
 

@@ -1,20 +1,15 @@
 package pages.persContainers;
 
-import utils.WaitMethods;
+
 import config.ServerConfig;
 import org.aeonbits.owner.ConfigFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.PersPage;
 
 public class PersonalData {
     private final WebDriver driver;
-    private static final Logger logger = LogManager.getLogger(PersPage.class);
     private final ServerConfig serverConfig = ConfigFactory.create(ServerConfig.class);
-    private final WaitMethods wait;
 
     private final By nameField = By.xpath("//input[@type='text'][@name='fname']");
     private final By nameEngField = By.xpath("//input[@type='text'][@name='fname_latin']");
@@ -26,7 +21,6 @@ public class PersonalData {
 
     public PersonalData(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WaitMethods(driver, 5,1);
     }
 
     public void fillPersonalData() {

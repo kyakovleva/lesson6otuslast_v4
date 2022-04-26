@@ -1,3 +1,4 @@
+import org.junit.runners.MethodSorters;
 import utils.DriverManager;
 import utils.WebDriverName;
 import exceptions.DriverNotFoundException;
@@ -13,7 +14,7 @@ import pages.persContainers.PersonalData;
 
 import java.util.List;
 
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MainTest {
     private WebDriver driver;
     private static final Logger logger = LogManager.getLogger(MainTest.class);
@@ -29,8 +30,9 @@ public class MainTest {
         DriverManager.end(driver);
     }
 
+
     @Test
-    public void testPersPageFill() throws DriverNotFoundException {
+    public void test1PersPageFill() throws DriverNotFoundException {
         // Открыть Chrome в режиме полного экрана
         driver = DriverManager.initDriver(webDriverName, List.of("start-maximized"));
 
@@ -64,7 +66,7 @@ public class MainTest {
     }
 
     @Test
-    public void testPersPageData() throws DriverNotFoundException {
+    public void test2PersPageData() throws DriverNotFoundException {
         driver = DriverManager.initDriver(webDriverName, List.of("start-maximized"));
 
         MainPage mainPage = new MainPage(driver);
