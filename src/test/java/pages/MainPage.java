@@ -26,14 +26,14 @@ public class MainPage {
     }
 
     public void open() {
-        driver.get(System.getProperty("base.url"));
+        driver.get(serverConfig.otusUrl());
     }
 
     public void auth() {
         driver.findElement(authButton).click();
 
-        driver.findElement(emailField).sendKeys(serverConfig.email());
-        driver.findElement(passwordField).sendKeys(serverConfig.password());
+        driver.findElement(emailField).sendKeys(System.getProperty("base.email"));
+        driver.findElement(passwordField).sendKeys(System.getProperty("base.password"));
         driver.findElement(loginButton).click();
 
         String newUserName = driver.findElement(loginName).getText();

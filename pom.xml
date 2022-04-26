@@ -68,6 +68,8 @@
                     <systemProperties>
                         <base.url>https://otus.ru</base.url>
                         <driverName>chrome</driverName>
+                        <base.email>toyeyi1115@sartess.com</base.email>
+                        <base.password>Qwerty123</base.password>
                     </systemProperties>
                 </configuration>
             </plugin>
