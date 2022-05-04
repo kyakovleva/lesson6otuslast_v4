@@ -1,5 +1,6 @@
-package config.utils;
+package utils;
 
+import enums.WebDriverName;
 import exceptions.DriverNotFoundException;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -28,7 +29,7 @@ public class WebDriverFactory {
                 edgeOptions.addArguments(options);
                 return new EdgeDriver(edgeOptions);
             default:
-                throw new DriverNotFoundException();
+                throw new DriverNotFoundException(driverName);
         }
     }
 
@@ -44,7 +45,7 @@ public class WebDriverFactory {
                 WebDriverManager.edgedriver().setup();
                 break;
             default:
-                throw new DriverNotFoundException();
+                throw new DriverNotFoundException(driverName);
 
         }
     }

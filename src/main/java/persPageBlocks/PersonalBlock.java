@@ -1,61 +1,89 @@
 package persPageBlocks;
 
 
-import config.ServerConfig;
-import org.aeonbits.owner.ConfigFactory;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class PersonalBlock extends BaseComponent {
 
-    private final ServerConfig serverConfig = ConfigFactory.create(ServerConfig.class);
-
-    private final By nameField = By.xpath("//input[@type='text'][@name='fname']");
-    private final By nameEngField = By.xpath("//input[@type='text'][@name='fname_latin']");
-    private final By surnameField = By.xpath("//input[@type='text'][@name='lname']");
-    private final By surnameEngField = By.xpath("//input[@type='text'][@name='lname_latin']");
-    private final By nickNameField = By.xpath("//input[@type='text'][@name='blog_name']");
-    private final By dateOfBirthField = By.xpath("//input[@name='date_of_birth']");
-    private final By dateOfBirthArea = By.xpath("//label[contains(text(),'Дата рождения')]");
+        @FindBy(css = "input[type='text'][name='fname']")
+    private WebElement nameField;
+    //    private final By nameField = By.cssSelector("input[type='text'][name='fname']");
+    @FindBy(css = "input[type='text'][name='fname_latin']")
+    private WebElement nameEngField;
+    //    private final By nameEngField = By.cssSelector("input[type='text'][name='fname_latin']");
+    @FindBy(css = "input[type='text'][name='lname']")
+    private WebElement surnameField;
+    //    private final By surnameField = By.cssSelector("input[type='text'][name='lname']");
+    @FindBy(css = "input[type='text'][name='blog_name']")
+    private WebElement surnameEngField;
+    //    private final By surnameEngField = By.cssSelector("input[type='text'][name='lname_latin']");
+    @FindBy(css = "input[type='text'][name='blog_name']")
+    private WebElement nickNameField;
+    //    private final By nickNameField = By.cssSelector("input[type='text'][name='blog_name']");
+    @FindBy(css = "input[name='date_of_birth']")
+    private WebElement dateOfBirthField;
+    //    private final By dateOfBirthField = By.cssSelector("input[name='date_of_birth']");
+    @FindBy(xpath = "//label[contains(text(),'Дата рождения')]")
+    private WebElement dateOfBirthArea;
+//    private final By dateOfBirthArea = By.xpath("//label[contains(text(),'Дата рождения')]");
 
     public PersonalBlock(WebDriver driver) {
         super(driver);
+//        PageFactory.initElements(driver,this);
+    }
+
+    public void fillName() {
+//        WebElement addName = driver.findElement(nameField);//Поле Имя
+        nameField.clear();
+        nameField.click();
+        nameField.sendKeys(serverConfig.name());
+    }
+
+    public void fillEngName() {
+//        WebElement addEnName = driver.findElement(nameEngField);//Поле Имя (латиницей)
+        nameEngField.clear();
+        nameEngField.click();
+        nameEngField.sendKeys(serverConfig.name());
+    }
+
+    public void fillSurname() {
+//        WebElement addSurname = driver.findElement(surnameField);//Поле Фамилия
+        surnameField.clear();
+        surnameField.click();
+        surnameField.sendKeys(serverConfig.surname());
+    }
+
+    public void fillEngSurname() {
+//        WebElement addEnSurname = driver.findElement(surnameEngField);//Поле Фамилия (латиницей)
+        surnameEngField.clear();
+        surnameEngField.click();
+        surnameEngField.sendKeys(serverConfig.surname());
+    }
+
+    public void fillNickName() {
+//        WebElement addNick = driver.findElement(nickNameField);//Имя в блоге
+        nickNameField.clear();
+        nickNameField.click();
+        nickNameField.sendKeys(serverConfig.name());
+    }
+
+    public void fillBirthDate() {
+//        WebElement addBirth = driver.findElement(dateOfBirthField);//Дата рождения
+        dateOfBirthField.clear();
+        dateOfBirthField.click();
+        dateOfBirthField.sendKeys(serverConfig.birth());
+        dateOfBirthArea.click();
+//        driver.findElement(dateOfBirthArea).click();
     }
 
     public void fillPersonalData() {
-        WebElement addName = driver.findElement(nameField);//Поле Имя
-        addName.clear();
-        addName.click();
-        addName.sendKeys(serverConfig.name());
-
-        WebElement addEnName = driver.findElement(nameEngField);//Поле Имя (латиницей)
-        addEnName.clear();
-        addEnName.click();
-        addEnName.sendKeys(serverConfig.name());
-
-        WebElement addSurname = driver.findElement(surnameField);//Поле Фамилия
-        addSurname.clear();
-        addSurname.click();
-        addSurname.sendKeys(serverConfig.surname());
-
-        WebElement addEnSurname = driver.findElement(surnameEngField);//Поле Фамилия (латиницей)
-        addEnSurname.clear();
-        addEnSurname.click();
-        addEnSurname.sendKeys(serverConfig.surname());
-
-        WebElement addNick = driver.findElement(nickNameField);//Имя в блоге
-        addNick.clear();
-        addNick.click();
-        addNick.sendKeys(serverConfig.name());
-
-        WebElement addBirth = driver.findElement(dateOfBirthField);//Дата рождения
-        addBirth.clear();
-        addBirth.click();
-        addBirth.sendKeys(serverConfig.birth());
-
-        driver.findElement(dateOfBirthArea).click();
-
+        fillName();
+        fillEngName();
+        fillSurname();
+        fillEngSurname();
+        fillNickName();
+        fillBirthDate();
     }
-
 }

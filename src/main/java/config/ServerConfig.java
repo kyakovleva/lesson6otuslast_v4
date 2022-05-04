@@ -1,13 +1,16 @@
 package config;
 
+import config.model.Contact;
+import enums.Cities;
+import enums.Countries;
+import enums.EnglishLevels;
 import org.aeonbits.owner.Config;
 import org.aeonbits.owner.Config.Sources;
 
+import java.util.List;
+
 @Sources("classpath:config.properties")
 public interface ServerConfig extends Config {
-
-	@Key("otusUrl")
-	String otusUrl();
 
 	@Key("email")
 	String email();
@@ -18,11 +21,10 @@ public interface ServerConfig extends Config {
 	@Key("phone1")
 	String phone1();
 
-	@Key("vk")
-	String vk();
-
-	@Key("tg")
-	String tg();
+	@Separator(",")
+	@Key("contacts.list")
+	@ConverterClass(ContactConverter.class)
+	List<Contact> contacts();
 
 	@Key("name")
 	String name();
@@ -32,4 +34,13 @@ public interface ServerConfig extends Config {
 
 	@Key("birth")
 	String birth();
+
+	@Key("country")
+	Countries country();
+
+	@Key("city")
+	Cities city();
+
+	@Key("languageLevel")
+	EnglishLevels engLevel();
 }

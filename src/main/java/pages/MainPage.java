@@ -1,7 +1,5 @@
 package pages;
 
-import config.ServerConfig;
-import org.aeonbits.owner.ConfigFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
@@ -11,7 +9,6 @@ import org.openqa.selenium.WebDriver;
 public class MainPage {
 
     private WebDriver driver;
-    private final ServerConfig serverConfig = ConfigFactory.create(ServerConfig.class);
     private static final Logger logger = LogManager.getLogger(MainPage.class);
 
     private By authButton = By.xpath("//span[@class='header2__auth-reg']");
@@ -26,7 +23,7 @@ public class MainPage {
     }
 
     public void open() {
-        driver.get(serverConfig.otusUrl());
+        driver.get(System.getProperty("base.url"));
     }
 
     public void auth() {

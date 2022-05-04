@@ -1,4 +1,4 @@
-package config.utils;
+package enums;
 
 public enum WebDriverName {
     chrome,
