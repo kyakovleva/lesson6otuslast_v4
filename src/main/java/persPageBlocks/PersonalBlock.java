@@ -1,4 +1,4 @@
-package pages.persContainers;
+package persPageBlocks;
 
 
 import config.ServerConfig;
@@ -7,8 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class PersonalData {
-    private final WebDriver driver;
+public class PersonalBlock extends BaseComponent {
+
     private final ServerConfig serverConfig = ConfigFactory.create(ServerConfig.class);
 
     private final By nameField = By.xpath("//input[@type='text'][@name='fname']");
@@ -19,8 +19,8 @@ public class PersonalData {
     private final By dateOfBirthField = By.xpath("//input[@name='date_of_birth']");
     private final By dateOfBirthArea = By.xpath("//label[contains(text(),'Дата рождения')]");
 
-    public PersonalData(WebDriver driver) {
-        this.driver = driver;
+    public PersonalBlock(WebDriver driver) {
+        super(driver);
     }
 
     public void fillPersonalData() {

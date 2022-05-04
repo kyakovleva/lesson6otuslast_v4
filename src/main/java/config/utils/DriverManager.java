@@ -1,4 +1,4 @@
-package utils;
+package config.utils;
 
 import exceptions.DriverNotFoundException;
 import org.apache.logging.log4j.LogManager;

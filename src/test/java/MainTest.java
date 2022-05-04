@@ -1,6 +1,6 @@
 import org.junit.runners.MethodSorters;
-import utils.DriverManager;
-import utils.WebDriverName;
+import config.utils.DriverManager;
+import config.utils.WebDriverName;
 import exceptions.DriverNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,9 +8,9 @@ import org.junit.*;
 import org.openqa.selenium.WebDriver;
 import pages.MainPage;
 import pages.PersPage;
-import pages.persContainers.ContactsData;
-import pages.persContainers.CountryData;
-import pages.persContainers.PersonalData;
+import persPageBlocks.ContactsBlock;
+import persPageBlocks.CountryBlock;
+import persPageBlocks.PersonalBlock;
 
 import java.util.List;
 
@@ -38,9 +38,9 @@ public class MainTest {
 
         MainPage mainPage = new MainPage(driver);
         PersPage perspage = new PersPage(driver);
-        PersonalData personalData = new PersonalData(driver);
-        CountryData countryData = new CountryData(driver);
-        ContactsData contactsData = new ContactsData(driver);
+        PersonalBlock personalData = new PersonalBlock(driver);
+        CountryBlock countryData = new CountryBlock(driver);
+        ContactsBlock contactsBlock = new ContactsBlock(driver);
 
         //Перейти на https://otus.ru
         mainPage.open();
@@ -57,7 +57,7 @@ public class MainTest {
         countryData.fillCountryData();
 
         //Добавление двух контактов
-        contactsData.addContacts();
+        contactsBlock.addContacts();
 
         //Нажать сохранить
         perspage.saveData();
@@ -71,15 +71,15 @@ public class MainTest {
 
         MainPage mainPage = new MainPage(driver);
         PersPage perspage = new PersPage(driver);
-        CountryData countryData = new CountryData(driver);
-        ContactsData contactsData = new ContactsData(driver);
+        CountryBlock countryData = new CountryBlock(driver);
+        ContactsBlock contactsBlock = new ContactsBlock(driver);
 
         //Проверить, что в разделе "О себе" отображаются указанные ранее данные
         mainPage.open();
         mainPage.auth();
         perspage.open();
         countryData.checkCountryData();
-        contactsData.checkContactsData();
+        contactsBlock.checkContactsData();
     }
 
 

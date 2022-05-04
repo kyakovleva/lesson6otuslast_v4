@@ -1,13 +1,13 @@
-package pages.persContainers;
+package persPageBlocks;
 
-import utils.JsOperations;
-import utils.WaitMethods;
 import config.ServerConfig;
+import config.utils.JsOperations;
+import config.utils.WaitMethods;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Assert;
+import org.apache.logging.log4j.core.util.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,14 +15,14 @@ import pages.PersPage;
 
 import java.util.List;
 
-public class ContactsData {
-    private final WebDriver driver;
+public class ContactsBlock extends BaseComponent {
+//    private final WebDriver driver;
     private static final Logger logger = LogManager.getLogger(PersPage.class);
     private final ServerConfig serverConfig = ConfigFactory.create(ServerConfig.class);
-    private final WaitMethods wait;
-    private JsOperations js;
+//    private final WaitMethods wait;
+//    private JsOperations js;
 
-    private final By deleteButtonContainer = By.xpath(".//div[contains(@class, 'container__col container__col_12 container__col_md-0')]");
+    private final By deleteButtonContainer = By.xpath("//div[(contains(@class,'container__col') and contains(@class,'container__col_12') and contains(@class,'container__col_md-0'))]");
     private final By deleteButton = By.xpath(".//button[contains(@class, 'js-formset-delete')]");
     private final By contactContainer = By.xpath("//div[contains(@class,'js-formset-row')]");
     private final By contactAddButton = By.xpath("//button[contains(text(),'Добавить')]");
@@ -30,10 +30,8 @@ public class ContactsData {
     private final By secondContactField = By.xpath("//input[@type='text'][@name='contact-1-value']");
 
 
-    public ContactsData(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WaitMethods(driver, 5, 1);
-        this.js = new JsOperations(driver);
+    public ContactsBlock(WebDriver driver) {
+        super(driver);
     }
 
     private void deleteContact(WebElement contact) {
@@ -42,19 +40,19 @@ public class ContactsData {
     }
 
     private void setContact(int cntNumber, String title, String text) {
-        String xpath = String.format("//input[@name='contact-%1d-service']/following::div", cntNumber);
+        String contactBlock = String.format("//input[@name='contact-%d-service']/following::div", cntNumber);
 
-        WebElement contact = driver.findElement(By.xpath(xpath));
+        WebElement contact = driver.findElement(By.xpath(contactBlock));
         contact.click();
 
-        xpath = String.format("//div[(contains(@class,'lk-cv-block__select-options') or contains(@class,'lk-cv-block__select-options_left')) and not(contains(@class,'hide'))]//button[@title='%1s']", title);
+        contactBlock = String.format("//div[(contains(@class,'lk-cv-block__select-options') or contains(@class,'lk-cv-block__select-options_left')) and not(contains(@class,'hide'))]//button[@title='%1s']", title);
 
-        WebElement contactType = driver.findElement(By.xpath(xpath));
+        WebElement contactType = driver.findElement(By.xpath(contactBlock));
         contactType.click();
 
-        xpath = String.format("//input[@type='text'][@name='contact-%1d-value']", cntNumber);
+        contactBlock = String.format("//input[@type='text'][@name='contact-%d-value']", cntNumber);
 
-        WebElement setContact = driver.findElement(By.xpath(xpath));
+        WebElement setContact = driver.findElement(By.xpath(contactBlock));
         setContact.clear();
         setContact.sendKeys(text);
 

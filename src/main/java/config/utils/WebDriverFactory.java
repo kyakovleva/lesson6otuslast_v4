@@ -1,4 +1,4 @@
-package utils;
+package config.utils;
 
 import exceptions.DriverNotFoundException;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -28,7 +28,7 @@ public class WebDriverFactory {
                 edgeOptions.addArguments(options);
                 return new EdgeDriver(edgeOptions);
             default:
-                throw new DriverNotFoundException("Unknown driver");
+                throw new DriverNotFoundException();
         }
     }
 
@@ -44,7 +44,7 @@ public class WebDriverFactory {
                 WebDriverManager.edgedriver().setup();
                 break;
             default:
-                throw new DriverNotFoundException("Unknown driver");
+                throw new DriverNotFoundException();
 
         }
     }
